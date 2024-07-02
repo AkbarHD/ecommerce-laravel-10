@@ -106,13 +106,14 @@
     font-style: italic;
 }
 
-/*  */
+/* */
 
-*{
+* {
     font-family: "Poppins", sans-serif;
     font-weight: 500;
     font-style: normal;
 }
+
 .icon-nav {
     color: #ffffff8c;
     position: relative;
@@ -125,10 +126,12 @@
 .hijau-tua {
     background-color: #025464 !important;
 }
-.notif{
+
+.notif {
     position: relative;
 }
-.circle{
+
+.circle {
     position: absolute;
     width: 16px;
     height: 16px;
@@ -143,23 +146,26 @@
     left: 5px;
 }
 
-section{
+section {
     min-height: 80vh;
 }
 
-footer{
-    bottom: 0;
+footer {
+    /* bottom: 0; */
     background-color: #025464;
     color: white;
+    width: 100%;
 }
 
-.title-left{
-    width: 40%;
+/* .title-left{
+width: 40%;
+} */
+.custom-row {
+    display: flex;
+    justify-content: space-between;
 }
 
-
-
-
-
-
-
+.col-lg-4.custom-col {
+    margin-right: 10px;
+    margin-left: 10px;
+}
