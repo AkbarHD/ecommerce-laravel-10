@@ -5,13 +5,87 @@
         <div class="col-md-3">
             <div class="card" style="width: 18rem;">
                 <div class="card-header">
-                    Featured
+                    Kategori
                 </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">An item</li>
-                    <li class="list-group-item">A second item</li>
-                    <li class="list-group-item">A third item</li>
-                </ul>
+                <div class="card-body">
+                    <div class="accordion accordion-flush" id="accordionFlushExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="flush-headingOne">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#flush-collapseOne" aria-expanded="false"
+                                    aria-controls="flush-collapseOne">
+                                    Pria
+                                </button>
+                            </h2>
+                            <div id="flush-collapseOne" class="accordion-collapse collapse"
+                                aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body ">
+                                    <div class="d-flex flex-column gap-4">
+                                        <a href="#" class="page-link">
+                                            <i class="fa-solid fa-plus"></i> Baju Pria
+                                        </a>
+                                        <a href="#" class="page-link">
+                                            <i class="fa-solid fa-plus"></i> Celana Pria
+                                        </a>
+                                        <a href="#" class="page-link">
+                                            <i class="fa-solid fa-plus"></i> Aksesoris Pria
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="flush-headingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#flush-collapseTwo" aria-expanded="false"
+                                    aria-controls="flush-collapseTwo">
+                                    Wanita
+                                </button>
+                            </h2>
+                            <div id="flush-collapseTwo" class="accordion-collapse collapse"
+                                aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    <div class="d-flex flex-column gap-4">
+                                        <a href="#" class="page-link">
+                                            <i class="fa-solid fa-plus"></i> Baju Wanita
+                                        </a>
+                                        <a href="#" class="page-link">
+                                            <i class="fa-solid fa-plus"></i> Celana Wanita
+                                        </a>
+                                        <a href="#" class="page-link">
+                                            <i class="fa-solid fa-plus"></i> Aksesoris Wanita
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="flush-headingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#flush-collapseThree" aria-expanded="false"
+                                    aria-controls="flush-collapseThree">
+                                    Anak-anak
+                                </button>
+                            </h2>
+                            <div id="flush-collapseThree" class="accordion-collapse collapse"
+                                aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    <div class="d-flex flex-column gap-4">
+                                        <a href="#" class="page-link">
+                                            <i class="fa-solid fa-plus"></i> Baju Anak
+                                        </a>
+                                        <a href="#" class="page-link">
+                                            <i class="fa-solid fa-plus"></i> Celana Anak
+                                        </a>
+                                        <a href="#" class="page-link">
+                                            <i class="fa-solid fa-plus"></i> Aksesoris Anak
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -227,6 +301,8 @@
                 </div>
             </div>
         </div>
+
+
         <nav class="pt-5 d-flex justify-content-center">
             <ul class="pagination">
                 <li class="page-item disabled">

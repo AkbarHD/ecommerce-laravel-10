@@ -169,3 +169,20 @@ width: 40%;
     margin-right: 10px;
     margin-left: 10px;
 }
+
+
+/* contact */
+/* .content-text {
+    padding-top: 70px;
+} */
+
+.contact {
+    margin-top: 80px;
+    margin-bottom: 50px;
+}
+
+.contact .size {
+    width: 100%;
+    height: 40vh;
+    border-radius: 10px;
+}

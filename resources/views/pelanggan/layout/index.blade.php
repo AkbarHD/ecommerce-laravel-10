@@ -35,6 +35,10 @@
             </div>
         </section>
 
+        {{-- modal --}}
+        @include('pelanggan.modal.loginPelanggan')
+        @include('pelanggan.modal.registerPelanggan')
+
         <footer>
             @include('pelanggan.component.footer')
         </footer>

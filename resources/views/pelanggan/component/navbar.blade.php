@@ -21,7 +21,8 @@
 
             </ul>
             <div class="d-flex gap-4 align-items-center">
-                <button class="btn btn-success" type="submit">Login | Register</button>
+                <button class="btn btn-success" type="button" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal">Login | Register</button>
                 <div class="notif">
                     <a href="javasript:;" class="fs-5">
                         <i class="fa-solid fa-bag-shopping icon-nav"></i>
