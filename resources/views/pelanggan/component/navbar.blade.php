@@ -24,7 +24,7 @@
                 <button class="btn btn-success" type="button" data-bs-toggle="modal"
                     data-bs-target="#exampleModal">Login | Register</button>
                 <div class="notif">
-                    <a href="javasript:;" class="fs-5">
+                    <a href="{{ route('transaksi') }}" class="fs-5">
                         <i class="fa-solid fa-bag-shopping icon-nav"></i>
                     </a>
                     <div class="circle">10</div>

@@ -10,13 +10,17 @@
                 <form action="">
                     <div class="row mb-3">
                         <label for="email" class="col-sm-3 col-form-label">Email</label>
-                        <input type="email" name="email" id="email" placeholder="Masukan email"
-                            class="form-control col-sm-9">
+                        <div class="col-sm-9">
+                            <input type="email" name="email" id="email" placeholder="Masukan email"
+                                class="form-control ">
+                        </div>
                     </div>
                     <div class="row mb-3">
                         <label for="password" class="col-sm-3 col-form-label">Password</label>
-                        <input type="password" name="password" id="password" placeholder="Masukan password"
-                            class="form-control col-sm-9">
+                        <div class="col-sm-9">
+                            <input type="password" name="password" id="password" placeholder="Masukan password"
+                                class="form-control">
+                        </div>
                     </div>
 
                     <div class="button-login">
