@@ -15,24 +15,31 @@
                 <img height="300px" src="{{ asset('assets/images/baju-1.png') }}" alt="">
                 <div class="desc">
                     <p class="fs-4 fw-bold">Baju Cotton warna hitam us</p>
-                    <h3>Rp. 200.000</h3>
+                    <input type="number" name="" id="harga" class="form-control border-0 fs-1 " value="200000">
+                    {{-- <h3>Rp. 200.000</h3> --}}
                     <div class="row mb-2">
                         <label for="qty" class="col-form-label fs-5 col-sm-4">Quantity</label>
                         <div class="col-sm-5 d-flex">
                             <button class="rounded-start bg-secondary p-2 border border-0" id="plus">+</button>
-                            <input type="number" name="qty" class="form-control w-50  text-center" id="qty"
+                            <input type="number" name="qty" class="form-control w-50 text-center" id="qty"
                                 min="0" max="9999" value="1">
                             <button class="rounded-end bg-secondary p-2 border border-0" id="minus" disabled>-</button>
                         </div>
                     </div>
+
                     <div class="row">
                         <label for="price" class="col-sm-4 col-form-label fs-5">Total</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control  border-0 fs-5" name="price" id="price" readonly
-                                value="Rp. 200.000">
+                            <input type="text" class="form-control  border-0 fs-4" name="total" id="total"
+                                readonly>
                         </div>
                     </div>
 
+                    <div class="row ">
+                        <button class="btn btn-success col-sm-5 me-2 mb-3 mb-md-0"> <i class="fa fa-shopping-cart"></i>
+                            Checkout</button>
+                        <button class="btn btn-danger col-sm-5"> <i class="fa fa-trash-alt me-2"></i>Delete</button>
+                    </div>
                 </div>
             </div>
         </div>
