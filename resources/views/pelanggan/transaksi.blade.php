@@ -36,8 +36,9 @@
                     </div>
 
                     <div class="row ">
-                        <button class="btn btn-success col-sm-5 me-2 mb-3 mb-md-0"> <i class="fa fa-shopping-cart"></i>
-                            Checkout</button>
+                        <a href="{{ route('checkout') }}" class="btn btn-success col-sm-5 me-2 mb-3 mb-md-0"> <i
+                                class="fa fa-shopping-cart"></i>
+                            Checkout</a>
                         <button class="btn btn-danger col-sm-5"> <i class="fa fa-trash-alt me-2"></i>Delete</button>
                     </div>
                 </div>

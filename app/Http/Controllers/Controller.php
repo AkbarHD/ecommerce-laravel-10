@@ -37,4 +37,11 @@ class Controller extends BaseController
             'title' => 'Contact'
         ]);
     }
+
+    public function checkout()
+    {
+        return view('pelanggan.checkout', [
+            'title' => 'Checkout'
+        ]);
+    }
 }

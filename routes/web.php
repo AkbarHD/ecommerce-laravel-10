@@ -18,6 +18,7 @@ Route::get('/', [Controller::class, 'index'])->name('beranda');
 Route::get('/shop', [Controller::class, 'shop'])->name('shop');
 Route::get('/transaksi', [Controller::class, 'transaksi'])->name('transaksi');
 Route::get('/contact', [Controller::class, 'contact'])->name('contact');
+Route::get('/checkout', [Controller::class, 'checkout'])->name('checkout');
 
 Auth::routes();
 

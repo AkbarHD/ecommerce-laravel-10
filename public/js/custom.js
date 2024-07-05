@@ -2,13 +2,13 @@ $(document).ready(function () {
     var nilai = $("#qty").val();
     var harga = $("#harga").val();
     // var total = $("#total").val();
-    var subtotal = parseInt(nilai) * parseInt(harga);
-    if (nilai > 0) {
-        $("#total").val(subtotal);
-    }
-    if (total > 0) {
-        $("#minus").prop("disabled", false);
-    }
+    // var subtotal = parseInt(nilai) * parseInt(harga);
+    // if (nilai > 0) {
+    $("#total").val(harga);
+    // }
+    // if (total > 0) {
+    //     $("#minus").prop("disabled", false);
+    // }
 
     $("#plus").click(function () {
         var nilai = $("#qty").val();
@@ -29,8 +29,24 @@ $(document).ready(function () {
         var harga = $("#harga").val();
         var subtotal = parseInt(penjumlahan) * parseInt(harga);
         $("#total").val(subtotal);
-        if (penjumlahan == 0) {
+        if (penjumlahan <= 1) {
             $("#minus").prop("disabled", true);
         }
+    });
+
+
+});
+
+$(document).ready(function () {
+    $("#diterima").on('input', function () {
+        var total = $("#dibayarkan").val();
+        var diterima = $("#diterima").val();
+        var hasil = diterima - total;
+        if (diterima < total) {
+            $("#dikembalikan").val(0);
+        } else {
+            $("#dikembalikan").val(hasil);
+        }
+
     });
 });
