@@ -34,19 +34,32 @@ $(document).ready(function () {
         }
     });
 
+    // $("#diterima").on('input', function () {
+    //     var total = $("#dibayarkan").val();
+    //     var diterima = $("#diterima").val();
+    //     var hasil = diterima - total;
+    //     if (diterima < total) {
+    //         $("#dikembalikan").val(0);
+    //     } else {
+    //         $("#dikembalikan").val(hasil);
+    //     }
 
-});
-
-$(document).ready(function () {
+    // });
+    //  ini yang benar
     $("#diterima").on('input', function () {
-        var total = $("#dibayarkan").val();
-        var diterima = $("#diterima").val();
+        var total = parseInt($("#dibayarkan").val()) || 0;
+        var diterima = parseInt($("#diterima").val()) || 0;
         var hasil = diterima - total;
-        if (diterima < total) {
+
+        if (hasil < 0) {
             $("#dikembalikan").val(0);
         } else {
             $("#dikembalikan").val(hasil);
         }
-
     });
+
+});
+
+$(document).ready(function () {
+
 });

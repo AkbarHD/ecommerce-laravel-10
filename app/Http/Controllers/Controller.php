@@ -44,4 +44,11 @@ class Controller extends BaseController
             'title' => 'Checkout'
         ]);
     }
+
+    public function admin()
+    {
+        return view('admin.layout.index', [
+            'title' => 'Admin'
+        ]);
+    }
 }

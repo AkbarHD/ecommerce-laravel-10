@@ -20,6 +20,8 @@ Route::get('/transaksi', [Controller::class, 'transaksi'])->name('transaksi');
 Route::get('/contact', [Controller::class, 'contact'])->name('contact');
 Route::get('/checkout', [Controller::class, 'checkout'])->name('checkout');
 
+Route::get('/admin', [Controller::class, 'admin'])->name('admin');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
