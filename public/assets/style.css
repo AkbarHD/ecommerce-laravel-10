@@ -173,7 +173,7 @@ width: 40%;
 
 /* contact */
 /* .content-text {
-    padding-top: 70px;
+padding-top: 70px;
 } */
 
 .contact {
@@ -185,4 +185,46 @@ width: 40%;
     width: 100%;
     height: 40vh;
     border-radius: 10px;
+}
+
+
+/* dashboard admin */
+
+main {
+    width: 100%;
+    overflow: hidden;
+    background-color: rgba(224, 224, 224, 0.744);
+    height: 100vh;
+}
+
+.sidebar {
+    position: fixed;
+    width: 250px;
+    background-color: #333;
+    height: 100vh;
+}
+
+.sidebar h5 {
+    font-size: 24px;
+    font-weight: 800;
+    color: white;
+    text-align: center;
+}
+
+.sidebar ul li {
+    list-style-type: none;
+    padding: 10px 5px;
+    color: white !important;
+}
+
+.sidebar li:hover {
+    background-color: rgba(217, 217, 217, 0.518);
+    border-radius: 10px;
+    margin: 0;
+    color: white !important;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: white;
 }

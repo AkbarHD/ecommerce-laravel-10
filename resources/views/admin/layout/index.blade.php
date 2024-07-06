@@ -26,26 +26,18 @@
 
 <body>
     <main>
-        <aside class="sidebar">
-            <h5>NadyaStore</h5>
-            <ul>
-                <li>
-                    <a href="#">Dashboard</a>
-                </li>
-                <li>
-                    <a href="#">Product</a>
-                </li>
-                <li>
-                    <a href="">User Management</a>
-                </li>
-                <li>
-                    <a href="">Repport</a>
-                </li>
-                <li>
-                    <a href="">Logout</a>
-                </li>
-            </ul>
-        </aside>
+        <div class="row">
+            <div class="col-sm-2">
+                @include('admin.component.sidebar')
+            </div>
+            <div class="col-sm-10 mt-2">
+                @include('admin.component.navbar')
+                <article class="ms-2">
+                    @yield('content')
+                </article>
+            </div>
+        </div>
+
     </main>
 
     {{-- cdn js --}}

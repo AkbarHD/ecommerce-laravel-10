@@ -22,6 +22,11 @@ Route::get('/checkout', [Controller::class, 'checkout'])->name('checkout');
 
 Route::get('/admin', [Controller::class, 'admin'])->name('admin');
 
+
+Route::get('/admin/product', [Controller::class, 'product'])->name('product');
+Route::get('/admin/user_managament', [Controller::class, 'userManagement'])->name('userManagement');
+Route::get('/admin/report', [Controller::class, 'report'])->name('report');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

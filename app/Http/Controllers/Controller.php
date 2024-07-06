@@ -47,8 +47,31 @@ class Controller extends BaseController
 
     public function admin()
     {
-        return view('admin.layout.index', [
+        return view('admin.dashboard', [
+            'name' => 'Dashboard',
             'title' => 'Admin'
+        ]);
+    }
+
+    public function product()
+    {
+        return view('admin.product', [
+            'name' => 'Product',
+            'title' => 'product'
+        ]);
+    }
+    public function userManagement()
+    {
+        return view('admin.user', [
+            'name' => 'User Management',
+            'title' => 'user management'
+        ]);
+    }
+    public function report()
+    {
+        return view('admin.report', [
+            'name' => 'Repport',
+            'title' => 'repport'
         ]);
     }
 }
