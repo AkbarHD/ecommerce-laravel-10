@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +27,9 @@ Route::get('/admin', [Controller::class, 'admin'])->name('admin');
 Route::get('/admin/product', [Controller::class, 'product'])->name('product');
 Route::get('/admin/user_managament', [Controller::class, 'userManagement'])->name('userManagement');
 Route::get('/admin/report', [Controller::class, 'report'])->name('report');
+
+
+Route::get('/admin/addmodal', [ProductController::class, 'addModal'])->name('addModal');
 
 Auth::routes();
 
