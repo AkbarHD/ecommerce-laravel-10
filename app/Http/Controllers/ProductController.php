@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use Illuminate\Console\View\Components\Alert;
 
 class ProductController extends Controller
 {
@@ -13,7 +14,12 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $data = Product::all();
+        return view('admin.product', [
+            'name' => 'Product',
+            'title' => 'product',
+            'product' => $data,
+        ]);
     }
 
     /**
@@ -22,7 +28,8 @@ class ProductController extends Controller
     public function addModal()
     {
         return view('admin.modal.addModal', [
-            'title' => 'Add Product'
+            'title' => 'Add Product',
+            'sku' => 'BRG' . rand(100000, 999999),
         ]);
     }
 
@@ -31,7 +38,27 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        //
+        // dd($request->all());
+        $data = new Product();
+        $data->sku = $request->sku;
+        $data->nama_product = $request->nama_product;
+        $data->type = $request->type;
+        $data->kategory = $request->kategory;
+        $data->harga = $request->harga;
+        $data->quantity = $request->quantity;
+        $data->foto = $request->foto;
+        $data->discount = 10 / 100;
+        $data->is_active = 1;
+
+        if ($request->hasFile('foto')) {
+            $photo = $request->file('foto');
+            $fileName = date('Ymd') . '-' . $photo->getClientOriginalName();
+            $photo->move(public_path('storage/product'), $fileName);
+            $data->foto = $fileName;
+        }
+
+        $data->save();
+        return redirect()->route('product')->with('success', 'Product created successfully.');
     }
 
     /**

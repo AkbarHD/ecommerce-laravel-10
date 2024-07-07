@@ -24,12 +24,13 @@ Route::get('/checkout', [Controller::class, 'checkout'])->name('checkout');
 Route::get('/admin', [Controller::class, 'admin'])->name('admin');
 
 
-Route::get('/admin/product', [Controller::class, 'product'])->name('product');
+Route::get('/admin/product', [ProductController::class, 'index'])->name('product');
 Route::get('/admin/user_managament', [Controller::class, 'userManagement'])->name('userManagement');
 Route::get('/admin/report', [Controller::class, 'report'])->name('report');
 
 
 Route::get('/admin/addmodal', [ProductController::class, 'addModal'])->name('addModal');
+Route::post('/admin/adddata', [ProductController::class, 'store'])->name('adddata');
 
 Auth::routes();
 

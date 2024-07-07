@@ -26,35 +26,43 @@
                 <thead>
                     <tr>
                         <td>No</td>
+                        <td>Gambar</td>
                         <td>Date In</td>
                         <td>SKU</td>
                         <td>Product Name</td>
                         <td>Category</td>
                         <td>Price</td>
-                        <td>Stock Good</td>
-                        <td>Stock Bad</td>
+                        <td>Stock </td>
                         <td>#</td>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>2024/15/06</td>
-                        <td>BRG9123</td>
-                        <td>Celana panjang hitam pria</td>
-                        <td>Pakaian Pria</td>
-                        <td>200000</td>
-                        <td>200</td>
-                        <td>10</td>
-                        <td>
-                            <button class="btn btn-info">
-                                <i class="fas fa-edit"></i>
-                            </button>
-                            <button class="btn btn-danger">
-                                <i class="fas fa-trash-alt"></i>
-                            </button>
-                        </td>
-                    </tr>
+                    @forelse ($product as $products)
+                        <tr class="align-middle">
+                            <td>{{ $loop->iteration }}</td>
+                            <td>
+                                <img src="{{ asset('storage/product/' . $products->foto) }}"
+                                    alt="{{ $products->nama_product }}" width="150px">
+                            </td>
+                            <td>{{ $products->created_at->format('d-m-Y') }}</td>
+                            <td>{{ $products->sku }}</td>
+                            <td>{{ $products->nama_product }}</td>
+                            <td>{{ $products->type . ' ' . $products->kategory }}</td>
+                            <td>{{ $products->harga }}</td>
+                            <td>{{ $products->quantity }}</td>
+                            <td>
+                                <button class="btn btn-info">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn btn-danger">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    @empty
+                        <p>Belum ada product</p>
+                    @endforelse
+
                 </tbody>
             </table>
         </div>

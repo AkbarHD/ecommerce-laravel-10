@@ -45,8 +45,7 @@
         </div>
     </main>
 
-    {{-- @include('sweetalert::alert') --}}
-
+    @include('sweetalert::alert')
 
     {{-- cdn js --}}
     {{-- cdn jquery --}}
