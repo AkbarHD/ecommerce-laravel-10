@@ -23,6 +23,13 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'foto',
+        'alamat',
+        'tlp',
+        'tgl_lahir',
+        'is_active',
+        'is_member',
+        'is_admin',
     ];
 
     /**

@@ -61,10 +61,11 @@
                     </div>
 
                     <div class="mb-3 row">
-                        <label for="Foto" class="col-sm-2 col-form-label">Foto</label>
+                        <label for="foto" class="col-sm-2 col-form-label">Foto</label>
                         <div class="col-sm-10">
-                            <input type="file" class="form-control" accept=".png, .jpg, .jpeg" id="Foto"
-                                name="foto">
+                            <input type="file" class="form-control" accept=".png, .jpg, .jpeg" id="foto"
+                                name="foto" onchange="previewImg()">
+                            <img src="" width="100px" class="preview">
                         </div>
                     </div>
                 </div>
@@ -77,3 +78,16 @@
         </div>
     </div>
 </div>
+
+<script>
+    function previewImg() {
+        const foto = document.querySelector('#foto');
+        const preview = document.querySelector('.preview');
+        preview.style.display = 'block';
+        const oFReader = new FileReader();
+        oFReader.readAsDataURL(foto.files[0]);
+        oFReader.onload = function(oFREvent) {
+            preview.src = oFREvent.target.result;
+        }
+    }
+</script>

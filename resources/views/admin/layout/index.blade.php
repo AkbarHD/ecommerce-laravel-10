@@ -39,7 +39,7 @@
             </div>
             <div class="col-sm-10 mt-2">
                 @include('admin.component.navbar')
-                <article class="ms-2">
+                <article class="">
                     @yield('content')
                 </article>
             </div>

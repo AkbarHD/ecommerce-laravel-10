@@ -65,6 +65,12 @@
 
                 </tbody>
             </table>
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="showData">
+                    Data ditampilkan dari {{ $product->count() }} dari {{ $product->total() }}
+                </div>
+                {{ $product->links() }}
+            </div>
         </div>
     </div>
 
