@@ -51,10 +51,10 @@
                             <td>{{ $products->harga }}</td>
                             <td>{{ $products->quantity }}</td>
                             <td>
-                                <button class="btn btn-info">
+                                <button class="btn btn-info editModal" data-id="{{ $products->id }}">
                                     <i class="fas fa-edit"></i>
                                 </button>
-                                <button class="btn btn-danger">
+                                <button class="btn btn-danger deleteData" data-id="{{ $products->id }}">
                                     <i class="fas fa-trash-alt"></i>
                                 </button>
                             </td>
@@ -68,15 +68,74 @@
         </div>
     </div>
 
-    <div class="tampilData"></div>
+    <div class="tampilData" style="display: none"></div>
+    <div class="tampilEditData" style="display: none"></div>
 
     <script>
+        $.ajaxSetup({
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            }
+        });
         $('#addData').click(function(e) {
             $.ajax({
                 url: "{{ route('addModal') }}",
                 success: function(response) {
                     $('.tampilData').html(response).show();
                     $('#addModal').modal('show');
+                }
+            });
+        });
+
+        $('.editModal').click(function() {
+            var id = $(this).data('id');
+            $.ajax({
+                type: "GET",
+                url: "{{ route('editModal', ['id' => ':id']) }}".replace(':id', id),
+                success: function(response) {
+                    $('.tampilEditData').html(response).show();
+                    $('#editModal').modal('show');
+                }
+            });
+        })
+
+        $('.deleteData').click(function(e) {
+            e.preventDefault();
+            var id = $(this).data('id');
+            swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: "DELETE",
+                        url: "{{ route('deleteData', ['id' => ':id']) }}".replace(':id', id),
+                        success: function(response) {
+                            swal.fire({
+                                title: 'Deleted!',
+                                text: 'Your file has been deleted.',
+                                icon: 'success',
+                                timer: 2000,
+                                showConfirmButton: false
+                            }).then(() => {
+                                location.reload(); // Reload the page to reflect changes
+                            });
+                        },
+                        error: function(response) {
+                            swal.fire({
+                                title: 'Error!',
+                                text: 'There was an error deleting the product.',
+                                icon: 'error',
+                                timer: 2000,
+                                showConfirmButton: false
+                            });
+                        }
+                    });
                 }
             });
         });

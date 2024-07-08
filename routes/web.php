@@ -32,6 +32,12 @@ Route::get('/admin/report', [Controller::class, 'report'])->name('report');
 Route::get('/admin/addmodal', [ProductController::class, 'addModal'])->name('addModal');
 Route::post('/admin/adddata', [ProductController::class, 'store'])->name('adddata');
 
+Route::get('/admin/editModal/{id}', [ProductController::class, 'show'])->name('editModal');
+Route::put('/admin/updateData/{id}', [ProductController::class, 'update'])->name('updateData');
+
+Route::delete('/admin/deleteData/{id}', [ProductController::class, 'destroy'])->name('deleteData');
+
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

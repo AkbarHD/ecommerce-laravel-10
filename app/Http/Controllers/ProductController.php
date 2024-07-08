@@ -64,9 +64,13 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Product $product)
+    public function show($id)
     {
-        //
+        $data = Product::findOrFail($id);
+        return view('admin.modal.editModal', [
+            'title' => 'Edit Product',
+            'product' => $data,
+        ])->render();
     }
 
     /**
@@ -80,16 +84,56 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateProductRequest $request, Product $product)
+    public function update(UpdateProductRequest $request, $id)
     {
-        //
+        $data = Product::findOrFail($id);
+        $oldPhoto = $data->foto; // simpan nama file foto lama
+        if ($request->hasFile('foto')) {
+            $photo = $request->file('foto');
+            $filename = date('Ymd') . '-' . $photo->getClientOriginalName();
+            $photo->move(public_path('storage/product'), $filename);
+            $data->foto = $filename;
+
+            // Hapus foto lama jika ada dan berbeda dengan foto default (misalnya tidak kosong atau nama tertentu)
+            if ($oldPhoto && file_exists(public_path('storage/product/' . $oldPhoto))) {
+                unlink(public_path('storage/product/' . $oldPhoto));
+            }
+        } else {
+            $filename = $request->foto;
+        }
+
+        $field = [
+            'sku' => $request->sku,
+            'nama_product' => $request->nama_product,
+            'type' => $request->type,
+            'kategory' => $request->kategory,
+            'harga' => $request->harga,
+            'quantity' => $request->quantity,
+            'discount' => 10 / 100,
+            'is_active' => 1,
+            'foto' => $filename
+        ];
+
+        $data->update($field);
+        return redirect()->route('product')->with('success', 'Product updated successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Product $product)
+    public function destroy($id)
     {
-        //
+        $data = Product::findOrFail($id);
+
+        // Hapus file foto jika ada
+        if ($data->foto) {
+            $fotoPath = public_path('storage/product/' . $data->foto);
+            if (file_exists($fotoPath)) {
+                unlink($fotoPath);
+            }
+        }
+
+        $data->delete();
+        return response()->json(['success' => 'Product deleted successfully.']);
     }
 }
