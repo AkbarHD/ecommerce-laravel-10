@@ -17,7 +17,7 @@
         <div class="card-header d-flex justify-content-between align-items-center bg-transparent border-0">
             <button class="btn btn-info text-white" id="addData">
                 <i class="fas fa-plus"></i>
-                <span class="fw-bold">Tambah Product</span>
+                <span class="fw-bold">Tambah User</span>
             </button>
         </div>
 
@@ -26,13 +26,11 @@
                 <thead>
                     <tr>
                         <td>No</td>
-                        <td>Gambar</td>
-                        <td>Date In</td>
-                        <td>SKU</td>
-                        <td>Product Name</td>
-                        <td>Category</td>
-                        <td>Price</td>
-                        <td>Stock </td>
+                        <td>Foto</td>
+                        <td>Join Date</td>
+                        <td>Nama Karyawan</td>
+                        <td>Role</td>
+                        <td>Status</td>
                         <td>#</td>
                     </tr>
                 </thead>
@@ -73,4 +71,78 @@
             </div> --}}
         </div>
     </div>
+
+    <div class="tampilData" style="display: none"></div>
+    <div class="tampilEditData" style="display: none"></div>
+
+
+    <script>
+        $.ajaxSetup({
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            }
+        });
+        $('#addData').click(function(e) {
+            $.ajax({
+                url: "{{ route('addModalUser') }}",
+                success: function(response) {
+                    $('.tampilData').html(response).show();
+                    $('#userTambah').modal('show');
+                }
+            });
+        });
+
+        $('.editModal').click(function() {
+            var id = $(this).data('id');
+            $.ajax({
+                type: "GET",
+                url: "{{ route('editModal', ['id' => ':id']) }}".replace(':id', id),
+                success: function(response) {
+                    $('.tampilEditData').html(response).show();
+                    $('#editModal').modal('show');
+                }
+            });
+        })
+
+        $('.deleteData').click(function(e) {
+            e.preventDefault();
+            var id = $(this).data('id');
+            swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: "DELETE",
+                        url: "{{ route('deleteData', ['id' => ':id']) }}".replace(':id', id),
+                        success: function(response) {
+                            swal.fire({
+                                title: 'Deleted!',
+                                text: 'Your file has been deleted.',
+                                icon: 'success',
+                                timer: 2000,
+                                showConfirmButton: false
+                            }).then(() => {
+                                location.reload(); // Reload the page to reflect changes
+                            });
+                        },
+                        error: function(response) {
+                            swal.fire({
+                                title: 'Error!',
+                                text: 'There was an error deleting the product.',
+                                icon: 'error',
+                                timer: 2000,
+                                showConfirmButton: false
+                            });
+                        }
+                    });
+                }
+            });
+        });
+    </script>
 @endsection
