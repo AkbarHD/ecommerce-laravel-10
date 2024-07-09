@@ -26,33 +26,49 @@
                 <thead>
                     <tr>
                         <td>No</td>
+                        <td>NIK</td>
                         <td>Foto</td>
                         <td>Join Date</td>
                         <td>Nama Karyawan</td>
+                        <td>Telephone</td>
+                        <td>Birthday</td>
                         <td>Role</td>
                         <td>Status</td>
                         <td>#</td>
                     </tr>
                 </thead>
                 <tbody>
-                    {{-- @forelse ($product as $products)
+                    @forelse ($users as $user)
                         <tr class="align-middle">
                             <td>{{ $loop->iteration }}</td>
+                            <td>{{ $user->nik }}</td>
                             <td>
-                                <img src="{{ asset('storage/product/' . $products->foto) }}"
-                                    alt="{{ $products->nama_product }}" width="150px">
+                                <img src="{{ asset('storage/user/' . $user->foto) }}" alt="{{ $user->nama_product }}"
+                                    width="150px">
                             </td>
-                            <td>{{ $products->created_at->format('d-m-Y') }}</td>
-                            <td>{{ $products->sku }}</td>
-                            <td>{{ $products->nama_product }}</td>
-                            <td>{{ $products->type . ' ' . $products->kategory }}</td>
-                            <td>{{ $products->harga }}</td>
-                            <td>{{ $products->quantity }}</td>
+                            <td>{{ $user->created_at->format('d-m-Y') }}</td>
+                            <td>{{ $user->name }}</td>
+                            <td>{{ $user->tlp }}</td>
+                            <td>{{ $user->tgl_lahir }}</td>
                             <td>
-                                <button class="btn btn-info editModal" data-id="{{ $products->id }}">
+                                @if ($user->role == 1)
+                                    <span class="badge bg-primary">Admin</span>
+                                @else
+                                    <span class="badge bg-success">Manager</span>
+                                @endif
+                            </td>
+                            <td>
+                                @if ($user->is_active == 1)
+                                    <span class="badge bg-success">Active</span>
+                                @else
+                                    <span class="badge bg-danger">No Active</span>
+                                @endif
+                            </td>
+                            <td>
+                                <button class="btn btn-info editModal" data-id="{{ $user->id }}">
                                     <i class="fas fa-edit"></i>
                                 </button>
-                                <button class="btn btn-danger deleteData" data-id="{{ $products->id }}">
+                                <button class="btn btn-danger deleteData" data-id="{{ $user->id }}">
                                     <i class="fas fa-trash-alt"></i>
                                 </button>
                             </td>
@@ -61,14 +77,14 @@
                         <p>Belum ada product</p>
                     @endforelse
 
-                </tbody> --}}
+                </tbody>
             </table>
-            {{-- <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex justify-content-between align-items-center">
                 <div class="showData">
-                    Data ditampilkan dari {{ $product->count() }} dari {{ $product->total() }}
+                    Data ditampilkan dari {{ $users->count() }} dari {{ $users->total() }}
                 </div>
-                {{ $product->links() }}
-            </div> --}}
+                {{ $users->links() }}
+            </div>
         </div>
     </div>
 

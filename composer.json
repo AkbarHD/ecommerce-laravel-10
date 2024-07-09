@@ -10,7 +10,6 @@
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
-        "laravel/ui": "^4.5",
         "nwidart/laravel-modules": "^11.0",
         "realrashid/sweet-alert": "^7.2"
     },

@@ -9,9 +9,11 @@ class UserController extends Controller
 {
     public function index()
     {
+        $user = User::paginate(5);
         return view('admin.user', [
             'name' => 'User Management',
-            'title' => 'user management'
+            'title' => 'user management',
+            'users' => $user,
         ]);
     }
 

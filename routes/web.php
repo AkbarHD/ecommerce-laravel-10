@@ -44,6 +44,6 @@ Route::put('/admin/updateData/{id}', [ProductController::class, 'update'])->name
 Route::delete('/admin/deleteData/{id}', [ProductController::class, 'destroy'])->name('deleteData');
 
 
-Auth::routes();
+// Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
