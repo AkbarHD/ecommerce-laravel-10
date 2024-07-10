@@ -35,7 +35,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('logout') }}" class="nav-link">
                     <div class="d-flex gap-3">
                         <i class="fa-solid fa-right-from-bracket text-white"></i>
                         <P class="m-0 p-0">Logout</P>
