@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use App\Models\User;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -24,8 +25,10 @@ class Controller extends BaseController
 
     public function shop()
     {
+        $product = Product::orderBy('created_at', 'desc')->paginate(6);
         return view('pelanggan.shop', [
-            'title' => 'Shop'
+            'title' => 'Shop',
+            'products' => $product
         ]);
     }
 

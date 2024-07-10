@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Transaksi;
 use App\Http\Requests\StoreTransaksiRequest;
 use App\Http\Requests\UpdateTransaksiRequest;
+use App\Models\Product;
 
 class TransaksiController extends Controller
 {
@@ -13,7 +14,13 @@ class TransaksiController extends Controller
      */
     public function index()
     {
-        //
+        $best = Product::where('quantity_out', '>', 5)->orderBy('created_at', 'desc')->get();
+        $products = Product::orderBy('created_at', 'desc')->get();
+        return view('pelanggan.home', [
+            'title' => 'Pelanggaan',
+            'products' => $products,
+            'bests' => $best,
+        ]);
     }
 
     /**

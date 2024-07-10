@@ -32,6 +32,8 @@
                                 <option value="" selected disabled hidden>Pilih Type</option>
                                 <option value="celana" {{ $product->type == 'celana' ? 'selected' : '' }}>Celana
                                 </option>
+                                <option value="celana" {{ $product->type == 'jaket' ? 'selected' : '' }}>Jaket
+                                </option>
                                 <option value="baju" {{ $product->type == 'baju' ? 'selected' : '' }}>Baju</option>
                                 <option value="aksesoris" {{ $product->type == 'aksesoris' ? 'selected' : '' }}>
                                     Aksesoris</option>

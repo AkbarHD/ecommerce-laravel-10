@@ -195,7 +195,7 @@ main {
     min-width: 100%;
     /* overflow: hidden; */
     background-color: rgba(224, 224, 224, 0.744);
-    height: 100vh;
+    /* height: 100vh; */
 }
 
 .sidebar {

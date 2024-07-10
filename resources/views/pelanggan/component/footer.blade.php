@@ -13,7 +13,7 @@
             </div>
         </div>
 
-        <div class="col-lg-4">
+        <div class="col-lg-6">
             <div class="">
                 <div class="header-title fs-5 mb-2 fw-bold">
                     Tentang Kami
@@ -34,7 +34,7 @@
             </div>
         </div>
 
-        <div class="col-lg-4">
+        <div class="col-lg-2">
             <div class="">
                 <div class="header-title fs-5 mb-2 fw-bold">
                     Sosial Media

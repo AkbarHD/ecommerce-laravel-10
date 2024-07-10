@@ -13,6 +13,12 @@
         <div class="icon-notif">
             <i class="fa-solid fa-bell fs-5"></i>
         </div>
-        <img class="rounded-circle" width="50px" src="{{ asset('assets/images/avatar5.png') }}" alt="">
+        <img class="rounded-circle" width="50px" src="{{ asset('storage/user/' . auth()->user()->foto) }}"
+            alt="">
+        <div class="d-flex flex-column">
+            <p class="m-0 fw-bold" style="font-size: 14px">{{ auth()->user()->name }}</p>
+            <p class="m-0" style="font-size: 12px">{{ auth()->user()->email }}</p>
+
+        </div>
     </div>
 </nav>
