@@ -19,6 +19,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [TransaksiController::class, 'index'])->name('beranda');
+Route::post('/addToCart/{id}', [TransaksiController::class, 'addToCart'])->name('addToCart');
+
 Route::get('/shop', [Controller::class, 'shop'])->name('shop');
 Route::get('/transaksi', [Controller::class, 'transaksi'])->name('transaksi');
 Route::get('/contact', [Controller::class, 'contact'])->name('contact');

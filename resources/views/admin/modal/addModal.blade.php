@@ -29,7 +29,7 @@
                             <select name="type" id="type" class="form-select">
                                 <option value="" selected disabled hidden>Pilih Type</option>
                                 <option value="celana">Celana</option>
-                                <option value="jaket">Jelana</option>
+                                <option value="jaket">Jaket</option>
                                 <option value="baju">Baju</option>
                                 <option value="aksesoris">Aksesoris</option>
                             </select>

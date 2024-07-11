@@ -24,10 +24,12 @@
                 <button class="btn btn-success" type="button" data-bs-toggle="modal"
                     data-bs-target="#exampleModal">Login | Register</button>
                 <div class="notif">
-                    <a href="{{ route('transaksi') }}" class="fs-5">
-                        <i class="fa-solid fa-bag-shopping icon-nav"></i>
+                    <a href="{{ route('transaksi') }}" class="fs-4">
+                        <i class="fa-solid fa-bag-shopping icon-nav "></i>
                     </a>
-                    <div class="circle">10</div>
+                    @if ($count_keranjang)
+                        <div class="circle">{{ $count_keranjang }}</div>
+                    @endif
                 </div>
             </div>
         </div>

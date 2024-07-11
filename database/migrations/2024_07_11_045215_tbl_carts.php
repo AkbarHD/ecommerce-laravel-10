@@ -10,15 +10,14 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('detail_transaksis', function (Blueprint $table) {
+        Schema::create('tbl_carts', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_transaksi');
+            $table->string('idUser');
             $table->unsignedBigInteger('id_barang');
             $table->integer('qty');
             $table->bigInteger('price');
             $table->integer('status')->default(0);
 
-            $table->foreign('id_transaksi')->references('id')->on('transaksis');
             $table->foreign('id_barang')->references('id')->on('products');
             $table->timestamps();
         });
@@ -29,6 +28,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('tbl_carts');
     }
 };

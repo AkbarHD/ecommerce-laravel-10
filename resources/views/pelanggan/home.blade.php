@@ -3,8 +3,6 @@
 @section('content')
     <div class="container">
         @if ($bests)
-            <div class="container"></div>
-        @else
             <div class="best-seler">
                 <h3 class="mt-4">Best Seler</h3>
                 <div class="row">
@@ -74,9 +72,12 @@
                                 <div class="card-footer d-flex flex-row justify-content-between align-items-center">
                                     <p class="m-0" style="font-size: 16px; font-weight: 700">Rp.
                                         {{ number_format($product->harga) }}</p>
-                                    <button class="btn btn-outline-primary" style="font-size: 24px">
-                                        <i class="fa-solid fa-cart-plus"></i>
-                                    </button>
+                                    <form action="{{ route('addToCart', $product->id) }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn btn-outline-primary" style="font-size: 24px">
+                                            <i class="fa-solid fa-cart-plus"></i>
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
 
