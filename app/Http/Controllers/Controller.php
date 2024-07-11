@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\detailTransaksi;
 use App\Models\Product;
+use App\Models\tblCart;
+use App\Models\Transaksi;
 use App\Models\User;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -25,32 +28,74 @@ class Controller extends BaseController
 
     public function shop()
     {
+        $countKeranjang = tblCart::count();
         $product = Product::orderBy('created_at', 'desc')->paginate(6);
         return view('pelanggan.shop', [
             'title' => 'Shop',
-            'products' => $product
+            'products' => $product,
+            'count_keranjang' => $countKeranjang
         ]);
     }
 
     public function transaksi()
     {
+        $co = tblCart::with('product')->where('idUser', 'gues123')->get();
+        $countKeranjang = tblCart::count();
         return view('pelanggan.transaksi', [
-            'title' => 'Transaksi'
+            'title' => 'Transaksi',
+            'count_keranjang' => $countKeranjang,
+            'co' => $co
         ]);
     }
 
     public function contact()
     {
+        $countKeranjang = tblCart::count();
         return view('pelanggan.contact', [
-            'title' => 'Contact'
+            'title' => 'Contact',
+            'count_keranjang' => $countKeranjang
         ]);
     }
 
     public function checkout()
     {
+        $countKeranjang = tblCart::count();
         return view('pelanggan.checkout', [
-            'title' => 'Checkout'
+            'title' => 'Checkout',
+            'count_keranjang' => $countKeranjang
         ]);
+    }
+
+    public function prosesCheckout(Request $request, $id)
+    {
+        $data = $request->all();
+        $findId = tblCart::find($id);
+        $code = Transaksi::count();
+        $codeTransaksi = random_int(000, 999) . date('Ymd') . $code;
+        // $data = tblCart::find($id);
+        // dd($data);
+
+        $detailTansaksi = new detailTransaksi;
+        // ketika si user ini sudah transaksi dan dia back mau ganti transaksi maka jadi update
+        $fieldDetail = [
+            'id_transaksi' => $codeTransaksi,
+            'id_barang' => $data['id_barang'],
+            'qty' => $data['qty'],
+            'price' => $data['total'],
+        ];
+
+        $detailTansaksi->create($fieldDetail);
+
+        $fieldCart = [
+            'qty' => $data['qty'],
+            'price' => $data['total'],
+        ];
+
+        $findId->update($fieldCart);
+        Alert::toast('Checkout Berhasil', 'success');
+
+        return redirect()->route('checkout');
+
     }
 
     public function admin()

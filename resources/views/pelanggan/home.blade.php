@@ -28,9 +28,12 @@
                                     <div class="card-footer d-flex flex-row justify-content-between align-items-center">
                                         <p class="m-0" style="font-size: 16px; font-weight: 700">Rp.
                                             {{ number_format($product->harga) }}</p>
-                                        <button class="btn btn-outline-primary" style="font-size: 24px">
-                                            <i class="fa-solid fa-cart-plus"></i>
-                                        </button>
+                                        <form action="{{ route('addToCart', $product->id) }}" method="POST">
+                                            @csrf
+                                            <button class="btn btn-outline-primary" style="font-size: 24px">
+                                                <i class="fa-solid fa-cart-plus"></i>
+                                            </button>
+                                        </form>
                                     </div>
                                 </div>
 

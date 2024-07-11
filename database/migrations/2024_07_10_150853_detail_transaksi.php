@@ -18,7 +18,7 @@ return new class extends Migration {
             $table->bigInteger('price');
             $table->integer('status')->default(0);
 
-            $table->foreign('id_transaksi')->references('id')->on('transaksis');
+            // $table->foreign('id_transaksi')->references('id')->on('transaksis');
             $table->foreign('id_barang')->references('id')->on('products');
             $table->timestamps();
         });

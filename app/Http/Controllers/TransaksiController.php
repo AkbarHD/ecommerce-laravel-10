@@ -33,7 +33,7 @@ class TransaksiController extends Controller
      */
     public function addToCart(Request $request, $id)
     {
-        $idProduct = $request->input('idProduct');
+        // $idProduct = $request->input('idProduct');
         $db = new tblCart;
         $product = Product::find($id);
         $field = [
@@ -43,9 +43,9 @@ class TransaksiController extends Controller
             'price' => $product->harga,
         ];
 
-        tblCart::create($field);
-        Alert::toast('Produk ditambahkan ke keranjang', 'success');
-        return back();
+        $db->create($field);
+        // Alert::toast('Produk ditambahkan ke keranjang', 'success');
+        return redirect()->route('beranda')->with('success', 'Produk ditambahkan ke keranjang');
     }
 
     /**

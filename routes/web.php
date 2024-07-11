@@ -25,6 +25,7 @@ Route::get('/shop', [Controller::class, 'shop'])->name('shop');
 Route::get('/transaksi', [Controller::class, 'transaksi'])->name('transaksi');
 Route::get('/contact', [Controller::class, 'contact'])->name('contact');
 Route::get('/checkout', [Controller::class, 'checkout'])->name('checkout');
+Route::post('/checkout/proses/{id}', [Controller::class, 'prosesCheckout'])->name('checkout.product');
 
 Route::get('/admin', [Controller::class, 'login'])->name('login');
 Route::post('/admin/loginproses', [Controller::class, 'loginproses'])->name('loginproses');
