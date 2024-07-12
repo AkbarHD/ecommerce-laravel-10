@@ -28,7 +28,7 @@ class Controller extends BaseController
 
     public function shop()
     {
-        $countKeranjang = tblCart::count();
+        $countKeranjang = tblCart::where(['idUser' => 'gues123', 'status' => 0])->count();
         $product = Product::orderBy('created_at', 'desc')->paginate(6);
         return view('pelanggan.shop', [
             'title' => 'Shop',
@@ -39,8 +39,8 @@ class Controller extends BaseController
 
     public function transaksi()
     {
-        $co = tblCart::with('product')->where('idUser', 'gues123')->get();
-        $countKeranjang = tblCart::count();
+        $co = tblCart::with('product')->where(['idUser' => 'gues123', 'status' => 0])->get();
+        $countKeranjang = tblCart::where(['idUser' => 'gues123', 'status' => 0])->count();
         return view('pelanggan.transaksi', [
             'title' => 'Transaksi',
             'count_keranjang' => $countKeranjang,
@@ -50,7 +50,7 @@ class Controller extends BaseController
 
     public function contact()
     {
-        $countKeranjang = tblCart::count();
+        $countKeranjang = tblCart::where(['idUser' => 'gues123', 'status' => 0])->count();
         return view('pelanggan.contact', [
             'title' => 'Contact',
             'count_keranjang' => $countKeranjang
@@ -59,11 +59,53 @@ class Controller extends BaseController
 
     public function checkout()
     {
-        $countKeranjang = tblCart::count();
+        $countKeranjang = tblCart::where(['idUser' => 'gues123', 'status' => 0])->count();
+        $code = Transaksi::count();
+        $codeTransaksi = date('Ymd') . $code + 1;
+        $detailBelanja = detailTransaksi::where(['id_transaksi' => $codeTransaksi, 'status' => 0])->sum('price');
+
+        $jumlahBarang = detailTransaksi::where(['id_transaksi' => $codeTransaksi, 'status' => 0])->sum('qty');
+        $qtyBarang = detailTransaksi::where(['id_transaksi' => $codeTransaksi, 'status' => 0])->count('id_barang');
         return view('pelanggan.checkout', [
             'title' => 'Checkout',
-            'count_keranjang' => $countKeranjang
+            'count_keranjang' => $countKeranjang,
+            'detailBelanja' => $detailBelanja,
+            'jumlahBarang' => $jumlahBarang,
+            'qtyOrder' => $qtyBarang,
+            'codeTransaksi' => $codeTransaksi,
         ]);
+    }
+
+    public function prosesPembayaran(Request $request)
+    {
+        $data = $request->all();
+        // dd($data);
+        $dbTransaksi = new Transaksi;
+        $field = [
+            'code_transaksi' => $data['code'],
+            'total_qty' => $data['total_qty'],
+            'total_harga' => $data['dibayarkan'],
+            'nama_customer' => $data['namaPenerima'],
+            'alamat' => $data['alamatPenerima'],
+            'no_tlp' => $data['tlp'],
+            'ekspedisi' => $data['ekspedisi'],
+        ];
+        $dbTransaksi->create($field);
+
+        $dataCart = detailTransaksi::where('id_transaksi', $data['code'])->get();
+        foreach ($dataCart as $x) {
+            $dataUp = detailTransaksi::where('id', $x->id)->first();
+            $dataUp->update(['status' => 1]);
+
+            $idProduct = Product::where('id', $x->id_barang)->first();
+            $idProduct->quantity = $idProduct->quantity - $x->qty;
+            $idProduct->quantity_out = $x->qty;
+            $idProduct->save();
+        }
+        Alert::toast('Transaksi Berhasil, di tunggu barangnya', 'success');
+
+        return redirect()->route('beranda');
+
     }
 
     public function prosesCheckout(Request $request, $id)
@@ -71,7 +113,7 @@ class Controller extends BaseController
         $data = $request->all();
         $findId = tblCart::find($id);
         $code = Transaksi::count();
-        $codeTransaksi = random_int(000, 999) . date('Ymd') . $code;
+        $codeTransaksi = date('Ymd') . $code + 1;
         // $data = tblCart::find($id);
         // dd($data);
 
@@ -89,6 +131,7 @@ class Controller extends BaseController
         $fieldCart = [
             'qty' => $data['qty'],
             'price' => $data['total'],
+            'status' => 1,
         ];
 
         $findId->update($fieldCart);

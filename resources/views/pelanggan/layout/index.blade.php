@@ -44,6 +44,7 @@
             @include('pelanggan.component.footer')
         </footer>
     </main>
+    @include('sweetalert::alert')
 
     {{-- cdn js --}}
     {{-- cdn jquery --}}

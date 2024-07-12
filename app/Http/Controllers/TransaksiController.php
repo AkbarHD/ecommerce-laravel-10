@@ -19,7 +19,7 @@ class TransaksiController extends Controller
     {
         $best = Product::where('quantity_out', '>', 5)->orderBy('created_at', 'desc')->get();
         $products = Product::orderBy('created_at', 'desc')->get();
-        $countKeranjang = tblCart::count();
+        $countKeranjang = tblCart::where(['idUser' => 'gues123', 'status' => 0])->count();
         return view('pelanggan.home', [
             'title' => 'Pelanggaan',
             'products' => $products,
@@ -45,7 +45,7 @@ class TransaksiController extends Controller
 
         $db->create($field);
         // Alert::toast('Produk ditambahkan ke keranjang', 'success');
-        return redirect()->route('beranda')->with('success', 'Produk ditambahkan ke keranjang');
+        return redirect()->route('transaksi')->with('success', 'Produk ditambahkan ke keranjang');
     }
 
     /**

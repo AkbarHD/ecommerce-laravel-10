@@ -89,6 +89,103 @@ $(document).ready(function () {
 
 
     // //  ini yang benar
+
+
+});
+
+// $(document).ready(function () {
+//     $(".eksp").change(function (e) {
+//         e.preventDefault();
+//         var eksp = $(".eksp").val();
+
+//         if (eksp === "jnt") {
+//             var ongkir = $(".ongkir").val(9000);
+//         } else if (eksp === "jne") {
+//             var ongkir = $(".ongkir").val(10000);
+//         } else if (eksp === "sicepat") {
+//             var ongkir = $(".ongkir").val(8000);
+//         } else {
+//             var ongkir = $(".ongkir").val(9500);
+//         }
+
+//         $(".pembayaran").each(function () {
+//             var card = $(this);
+//             var totalBelanja = card.find(".totalBelanja").val();
+//             var totalPpn = parseInt(totalBelanja) * 0.11;
+//             var ppn = card.find(".ppn").val(totalPpn);
+//             var disc = card.find(".discount").val();
+//             var totalDisc = parseInt(totalBelanja) * parseFloat(disc);
+//             var ongkir = card.find(".ongkir").val();
+
+//             var subtotal = parseInt(totalBelanja) + parseInt(totalPpn);
+//             var subtotal2 = parseInt(subtotal) + parseInt(ongkir);
+//             console.log(subtotal2);
+//             console.log(ongkir);
+//             card.find("#dibayarkan").val(subtotal2);
+//             // card.find('.ppn').val(ppn);
+//         });
+//     });
+// });
+
+$(document).ready(function () {
+    // Sembunyikan field PPN dan total saat halaman dimuat
+    // $("#PPn, #dibayarkan").val('').prop('disabled', true);
+
+    $(".eksp").change(function (e) {
+        e.preventDefault();
+        var eksp = $(this).val();
+        var ongkir = 0;
+
+        switch (eksp) {
+            case "jnt":
+                ongkir = 9000;
+                break;
+            case "jne":
+                ongkir = 10000;
+                break;
+            case "sicepat":
+                ongkir = 8000;
+                break;
+            case "ninja":
+                ongkir = 9500;
+                break;
+            default:
+                ongkir = 0;
+        }
+
+        $("#ongkir").val(ongkir);
+
+        // Hanya hitung dan tampilkan PPN dan total jika ekspedisi dipilih
+        if (eksp) {
+            calculateTotal();
+            $("#PPn, #dibayarkan").prop('disabled', false);
+        } else {
+            $("#PPn, #dibayarkan").val('').prop('disabled', true);
+        }
+    });
+
+    function calculateTotal() {
+        var totalBelanja = parseFloat($("#totalBelanja").val()) || 0;
+        var discount = parseFloat($("#discount").val()) || 0;
+        var ongkir = parseFloat($("#ongkir").val()) || 0;
+
+        var totalDiscount = totalBelanja * discount;
+        var totalAfterDiscount = totalBelanja - totalDiscount;
+
+        var ppn = totalAfterDiscount * 0.01;
+        $("#PPn").val(ppn.toFixed(2));
+
+        var total = totalAfterDiscount + ppn + ongkir;
+        $("#dibayarkan").val(total.toFixed(2));
+    }
+
+    // Tambahkan event listener untuk input lain yang mungkin mempengaruhi total
+    $("#totalBelanja, #discount, #ongkir").on('input', function () {
+        if ($(".eksp").val()) {
+            calculateTotal();
+        }
+    });
+
     // $("#diterima").on('input', function () {
     //     var total = parseInt($("#dibayarkan").val()) || 0;
     //     var diterima = parseInt($("#diterima").val()) || 0;
@@ -100,5 +197,4 @@ $(document).ready(function () {
     //         $("#dikembalikan").val(hasil);
     //     }
     // });
-
 });
